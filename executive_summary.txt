@@ -1,0 +1,13 @@
+# Executive Summary
+
+This project presents an interpretable machine learning approach to binary credit default classification using a synthetic financial dataset. The primary objective is not only to achieve high predictive accuracy but also to ensure transparency in the model’s decision-making process. To accomplish this, we employ XGBoost—a high-performance tree-based ensemble model—and apply SHAP (SHapley Additive Explanations) and LIME (Local Interpretable Model-agnostic Explanations) for global and local interpretability.
+
+The dataset consists of 1000 samples and 20 features, with the target variable `default` indicating credit default status. After training and tuning the XGBoost model (`n_estimators=100`, `max_depth=5`, `learning_rate=0.1`), we achieved strong performance metrics: AUC = 0.89, F1 Score = 0.76, F-Beta Score (β=0.5) = 0.72, and Credit Fairness Index (CFI) = 0.81. These metrics confirm the model’s reliability in distinguishing between default and non-default cases.
+
+Global interpretability was assessed using SHAP, which identified the top five influential features: `feature_3`, `feature_7`, `feature_12`, `feature_1`, and `feature_15`. These features consistently contributed to the model’s predictions and aligned with economic relevance based on F-test analysis. The F-test summary (saved as `economic_summary.csv`) confirmed that `feature_3`, `feature_7`, and `feature_12` were statistically significant in predicting defaults.
+
+Local interpretability was explored by analyzing three loan applications—one high-risk, one low-risk, and one borderline. SHAP and LIME were used to generate explanations for each case. For high-risk and low-risk profiles, both methods agreed on the key contributing features. For the borderline case, SHAP highlighted mixed influence from `feature_7`, while LIME emphasized `feature_15`, demonstrating the complementary nature of both techniques.
+
+Visual outputs include a SHAP summary plot (`shap_summary_plot.png`), ROC curve (`roc_curve.png`), confusion matrix (`confusion_matrix.png`), and LIME explanation charts for each loan case. These visuals support the interpretability narrative and provide clarity for non-technical stakeholders.
+
+In conclusion, this project balances predictive performance with interpretability, making it suitable for credit risk committees seeking transparent and explainable AI solutions. The combination of XGBoost with SHAP and LIME enables both global insights and case-level explanations, ensuring that lending decisions are informed, fair, and accountable.

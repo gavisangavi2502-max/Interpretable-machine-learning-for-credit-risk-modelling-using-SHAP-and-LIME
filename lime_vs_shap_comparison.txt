@@ -1,0 +1,26 @@
+# LIME vs SHAP Comparison
+
+This section presents a comparative analysis of local interpretability techniques—**SHAP** and **LIME**—applied to three distinct loan applications: one high-risk, one low-risk, and one borderline case. Both methods aim to explain individual predictions made by the XGBoost model, but they differ in approach and emphasis.
+
+##  Case-Based Comparison
+
+| Case        | SHAP Insight                          | LIME Insight                          | Agreement |
+|-------------|----------------------------------------|----------------------------------------|-----------|
+| High Risk   | `feature_3` strongly increases risk    | Same feature highlighted               |   Yes      |
+| Low Risk    | `feature_12` reduces risk              | `feature_12` and `feature_1` reduce risk |  Yes      |
+| Borderline  | Mixed influence from `feature_7`       | Emphasized `feature_15` more           |   No      |
+
+##  Interpretation
+
+- **High-Risk Case:** Both SHAP and LIME identified `feature_3` as the dominant factor contributing to default risk, showing strong agreement.
+- **Low-Risk Case:** SHAP highlighted `feature_12` as reducing risk, while LIME supported this and added `feature_1` as a secondary protective factor.
+- **Borderline Case:** SHAP showed mixed influence from `feature_7`, whereas LIME emphasized `feature_15`, indicating divergence in feature attribution.
+
+##  Summary
+
+- SHAP provides consistent, model-aware explanations based on feature contribution to prediction probability.
+- LIME offers intuitive, locally linear approximations that are useful for case-level insights.
+- Agreement between both methods strengthens confidence in the model’s decisions.
+- Divergence in borderline cases suggests the value of using both methods together for robust interpretability.
+
+This comparison supports the use of SHAP for global and consistent local explanations, while LIME adds value in highlighting alternative perspectives for individual cases. Together, they enhance transparency in credit risk assessment.
